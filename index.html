@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minimal PWA</title>
+
+    <link rel="manifest" href="manifest.json">
+
+    <meta name="theme-color" content="#4CAF50"> <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <script type="module">
+        // Basic setup for in-browser TypeScript transpilation
+        // This relies on the global 'ts' object from unpkg.com/typescript
+        // and a minimal transpilation logic.
+        async function transpileAndRun(tsPath, jsPath) {
+            if (typeof ts === 'undefined') {
+                console.warn('TypeScript library not loaded. Ensure script for unpkg.com/typescript is present.');
+                return;
+            }
+            try {
+                const response = await fetch(tsPath);
+                const tsCode = await response.text();
+                const jsResult = ts.transpileModule(tsCode, {
+                    compilerOptions: {
+                        target: ts.ScriptTarget.ES2022,
+                        module: ts.ModuleKind.ESNext,
+                        esModuleInterop: true
+                    }
+                });
+                const script = document.createElement('script');
+                script.type = 'module'; // Use module type for ES Modules
+                script.textContent = jsResult.outputText;
+                document.body.appendChild(script);
+            } catch (error) {
+                console.error(`Error transpiling and running ${tsPath}:`, error);
+            }
+        }
+
+        // Only run if not on a file:/// protocol or if explicitly desired
+        if (location.protocol !== 'file:') {
+             // You'll likely want to include the TypeScript library itself:
+            // <script src="https://unpkg.com/typescript@latest/lib/typescript.min.js"></script>
+            // then call this function:
+            // transpileAndRun('js/main.ts', 'js/main.js');
+            //
+            // For this minimal boilerplate, we'll assume a pre-compiled js/main.js
+            // for simplicity, or the user is using `tsc` locally.
+            // If you truly want in-browser TS, add the <script src="https://unpkg.com/typescript..."></script>
+            // before this module script and uncomment the transpileAndRun line.
+        }
+    </script>
+</head>
+<body>
+
+    <header>
+        <h1>Welcome to Your Minimal PWA!</h1>
+    </header>
+
+    <main>
+        <section>
+            <h2>Hello from the Web!</h2>
+            <p>This is a super basic Progressive Web App built with pure HTML, CSS, JavaScript, and TypeScript.</p>
+            <p>Check your browser's developer tools for the Service Worker and Manifest details.</p>
+            <button id="testButton">Click Me!</button>
+            <p id="outputMessage"></p>
+        </section>
+
+        <section>
+            <h2>What's Next?</h2>
+            <ul>
+                <li>Modify `css/style.css` for your app's look and feel.</li>
+                <li>Write your application logic in `js/main.ts`.</li>
+                <li>Customize `manifest.json` with your app's name, icons, and theme.</li>
+                <li>Enhance `js/service-worker.ts` for advanced caching strategies and offline features.</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Your Name/Company. All rights reserved.</p>
+    </footer>
+
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                // Ensure service-worker.js is transpiled from service-worker.ts
+                navigator.serviceWorker.register('/js/service-worker.js')
+                    .then(registration => {
+                        console.log('Service Worker registered with scope:', registration.scope);
+                    })
+                    .catch(error => {
+                        console.error('Service Worker registration failed:', error);
+                    });
+            });
+        }
+    </script>
+
+    <script src="js/main.js" type="module"></script>
+
+</body>
+</html>
