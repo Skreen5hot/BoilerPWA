@@ -1,53 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Your Awesome PWA Name</title>
-    <meta name="description" content="A concise description of your PWA's purpose and key features. Max ~160 characters.">
+    <meta name="description"
+        content="A concise description of your PWA's purpose and key features. Max ~160 characters.">
     <meta name="author" content="Your Name or Company Name">
 
     <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#4CAF50"> <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"> <meta name="apple-mobile-web-app-title" content="Your PWA Name">
+    <meta name="theme-color" content="#4CAF50">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Your PWA Name">
     <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon-180x180.png">
     <link rel="icon" href="assets/icons/favicon-32x32.png" sizes="32x32" type="image/png">
     <link rel="icon" href="assets/icons/favicon-16x16.png" sizes="16x16" type="image/png">
-    <link rel="icon" href="assets/icons/favicon.ico" type="image/x-icon"> <meta property="og:title" content="Your Awesome PWA Name">
+    <link rel="icon" href="assets/icons/favicon.ico" type="image/x-icon">
+    <meta property="og:title" content="Your Awesome PWA Name">
     <meta property="og:description" content="A more detailed description for social media sharing.">
-    <meta property="og:image" content="assets/social/og-image.png"> <meta property="og:url" content="https://yourpwa.com/">
-    <meta property="og:type" content="website"> <meta name="twitter:card" content="summary_large_image"> <meta name="twitter:title" content="Your Awesome PWA Name">
+    <meta property="og:image" content="assets/social/og-image.png">
+    <meta property="og:url" content="https://yourpwa.com/">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Your Awesome PWA Name">
 
     <link rel="canonical" href="https://yourpwa.com/">
     <link rel="stylesheet" href="styles/style.css">
-    
+
 </head>
+
 <body>
 
-<a href="#main-content" class="skip-to-content-link">Skip to main content</a>
+    <a href="#main-content" class="skip-to-content-link">Skip to main content</a>
 
     <header class="app-header">
-        <div class="app-header__container">
-            <div class="app-header__brand">
-                <a href="/" aria-label="Home">
-                    <img src="assets/icons/logo-48x48.png" alt="App Logo" class="app-logo">
-                    <span class="app-title">Minimal PWA</span>
-                </a>
-            </div>
-
-            <nav class="app-nav" aria-label="Main Navigation">
-                <button class="app-nav__toggle" aria-label="Open navigation menu" aria-expanded="false" aria-controls="app-nav-menu">
-                    <span class="hamburger-icon" aria-hidden="true"></span>
-                </button>
-                <ul class="app-nav__menu" id="app-nav-menu" hidden>
-                    <li><a href="#features">Features</a></li>
-                    <li><a href="#about">About Us</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                    <li><a href="#settings">Settings</a></li>
-                    </ul>
-            </nav>
+        <div class="topnav" id="myTopnav">
+            <a href="#home" class="active">Home</a>
+            <a href="#news">News</a>
+            <a href="#contact">Contact</a>
+            <a href="#about">About</a>
+            <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+                <i class="fa fa-bars"></i>
+            </a>
         </div>
+
+        <div style="padding-left:16px">
+            <h2>Responsive Topnav Example</h2>
+            <p>Resize the browser window to see how it works.</p>
+        </div>
+
     </header>
 
     <main id="main-content">
@@ -92,4 +96,5 @@
     <script src="core/app.js" type="module"></script>
 
 </body>
+
 </html>
