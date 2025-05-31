@@ -19,6 +19,9 @@
     <meta property="og:image" content="assets/social/og-image.png"> <meta property="og:url" content="https://yourpwa.com/">
     <meta property="og:type" content="website"> <meta name="twitter:card" content="summary_large_image"> <meta name="twitter:title" content="Your Awesome PWA Name">
 
+    <link rel="canonical" href="https://yourpwa.com/">
+    <link rel="stylesheet" href="styles/style.css">
+    
     <script type="module">
         // Basic setup for in-browser TypeScript transpilation
         // This relies on the global 'ts' object from unpkg.com/typescript
@@ -63,11 +66,32 @@
 </head>
 <body>
 
-    <header>
-        <h1>Welcome to Your Minimal PWA!</h1>
+<a href="#main-content" class="skip-to-content-link">Skip to main content</a>
+
+    <header class="app-header">
+        <div class="app-header__container">
+            <div class="app-header__brand">
+                <a href="/" aria-label="Home">
+                    <img src="assets/icons/logo-48x48.png" alt="App Logo" class="app-logo">
+                    <span class="app-title">Minimal PWA</span>
+                </a>
+            </div>
+
+            <nav class="app-nav" aria-label="Main Navigation">
+                <button class="app-nav__toggle" aria-label="Open navigation menu" aria-expanded="false" aria-controls="app-nav-menu">
+                    <span class="hamburger-icon" aria-hidden="true"></span>
+                </button>
+                <ul class="app-nav__menu" id="app-nav-menu" hidden>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#settings">Settings</a></li>
+                    </ul>
+            </nav>
+        </div>
     </header>
 
-    <main>
+    <main id="main-content">
         <section>
             <h2>Hello from the Web!</h2>
             <p>This is a super basic Progressive Web App built with pure HTML, CSS, JavaScript, and TypeScript.</p>
