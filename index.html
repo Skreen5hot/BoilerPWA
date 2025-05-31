@@ -22,47 +22,6 @@
     <link rel="canonical" href="https://yourpwa.com/">
     <link rel="stylesheet" href="styles/style.css">
     
-    <script type="module">
-        // Basic setup for in-browser TypeScript transpilation
-        // This relies on the global 'ts' object from unpkg.com/typescript
-        // and a minimal transpilation logic.
-        async function transpileAndRun(tsPath, jsPath) {
-            if (typeof ts === 'undefined') {
-                console.warn('TypeScript library not loaded. Ensure script for unpkg.com/typescript is present.');
-                return;
-            }
-            try {
-                const response = await fetch(tsPath);
-                const tsCode = await response.text();
-                const jsResult = ts.transpileModule(tsCode, {
-                    compilerOptions: {
-                        target: ts.ScriptTarget.ES2022,
-                        module: ts.ModuleKind.ESNext,
-                        esModuleInterop: true
-                    }
-                });
-                const script = document.createElement('script');
-                script.type = 'module'; // Use module type for ES Modules
-                script.textContent = jsResult.outputText;
-                document.body.appendChild(script);
-            } catch (error) {
-                console.error(`Error transpiling and running ${tsPath}:`, error);
-            }
-        }
-
-        // Only run if not on a file:/// protocol or if explicitly desired
-        if (location.protocol !== 'file:') {
-             // You'll likely want to include the TypeScript library itself:
-            // <script src="https://unpkg.com/typescript@latest/lib/typescript.min.js"></script>
-            // then call this function:
-            // transpileAndRun('js/main.ts', 'js/main.js');
-            //
-            // For this minimal boilerplate, we'll assume a pre-compiled js/main.js
-            // for simplicity, or the user is using `tsc` locally.
-            // If you truly want in-browser TS, add the <script src="https://unpkg.com/typescript..."></script>
-            // before this module script and uncomment the transpileAndRun line.
-        }
-    </script>
 </head>
 <body>
 
