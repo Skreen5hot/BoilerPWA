@@ -4,6 +4,24 @@
 
 This is a super minimal Progressive Web App (PWA) boilerplate, built with **zero frameworks**, **no Node.js**, and **no NPM**. It's designed for developers who want a pure HTML, CSS, JavaScript, and TypeScript foundation to build fast, reliable, and engaging web applications without any external dependencies or complex build tooling.
 
+/your-app
+├── index.html                 # Entry point
+├── manifest.json             # PWA manifest
+├── service-worker.js         # PWA service worker
+├── /assets                   # Images, icons, fonts, etc.
+├── /styles
+│   └── style.css             # Plain CSS
+├── /core                     # Pure functions (business logic)
+│   ├── app.js                # App initialization logic
+│   ├── domain.js             # Core domain logic (pure functions)
+│   └── ports.js              # Interfaces (port declarations)
+├── /adapters
+│   ├── dom.js                # DOM interaction (adapter for UI)
+│   ├── storage.js            # LocalStorage or IndexedDB adapter
+│   └── time.js               # Adapter for time-related functions
+└── README.md
+
+
 ---
 
 ## Why this boilerplate?
