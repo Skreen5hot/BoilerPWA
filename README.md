@@ -1,28 +1,51 @@
----
-
 # Minimal PWA Boilerplate
 
 This is a super minimal Progressive Web App (PWA) boilerplate, built with **zero frameworks**, **no Node.js**, and **no NPM**. It's designed for developers who want a pure HTML, CSS, JavaScript, and TypeScript foundation to build fast, reliable, and engaging web applications without any external dependencies or complex build tooling.
 
-/your-app
-├── index.html                 # Entry point
-├── manifest.json             # PWA manifest
-├── service-worker.js         # PWA service worker
-├── /assets                   # Images, icons, fonts, etc.
-├── /styles
-│   └── style.css             # Plain CSS
-├── /core                     # Pure functions (business logic)
-│   ├── app.js                # App initialization logic
-│   ├── domain.js             # Core domain logic (pure functions)
-│   └── ports.js              # Interfaces (port declarations)
-├── /adapters
-│   ├── dom.js                # DOM interaction (adapter for UI)
-│   ├── storage.js            # LocalStorage or IndexedDB adapter
-│   └── time.js               # Adapter for time-related functions
-└── README.md
+You can format your project architecture in the `README.md` using a tree-like structure, which is common and easy to read on GitHub. You'll want to use Markdown's code blocks for this.
 
+Here's how you can present your project structure:
 
 ---
+
+
+## Project Structure
+
+This boilerplate follows a clean, decoupled architecture to keep your core logic independent from external concerns like the DOM or local storage. This makes your application easier to understand, test, and maintain.
+
+```
+/your-app
+├── index.html               # Entry point of your PWA
+├── manifest.json            # Web App Manifest for PWA features (icons, name, display mode)
+├── service-worker.js        # Service Worker script for offline capabilities and caching
+│
+├── assets/                  # Static assets like images, app icons, and fonts
+│
+├── styles/
+│   └── style.css            # Your application's main CSS styles
+│
+├── core/                    # Pure functions and core business logic
+│   ├── app.js               # Application initialization and orchestration logic
+│   ├── domain.js            # Defines your application's core domain models and business rules (pure functions)
+│   └── ports.js             # Defines the interfaces (ports) that adapters must implement (e.g., how to display data, how to store data)
+│
+└── adapters/                # Implementations of the 'ports' that interact with external systems
+    ├── dom.js               # Handles all direct DOM manipulation and UI updates (adapter for `display` or `render` ports)
+    ├── storage.js           # Manages data persistence (e.g., using `localStorage`, `IndexedDB` - adapter for `storage` ports)
+    └── time.js              # Provides time-related utilities or interacts with date APIs (adapter for `time` ports)
+```
+
+---
+
+### Explanation of Architecture
+
+* **`/core`**: This is the heart of your application. It contains **pure functions** that represent your business logic and domain rules. These functions shouldn't know anything about how data is displayed or stored; they just process data.
+* **`/adapters`**: These modules are responsible for interacting with external systems. They "adapt" the generic `ports` defined in `/core` to specific technologies (e.g., the browser's DOM, `localStorage`, `IndexedDB`). This separation means you could swap out `dom.js` for a different UI library adapter in the future without touching your core logic.
+* **`index.html`**: The single entry point that orchestrates the loading of your styles, manifest, and main application logic.
+* **`manifest.json` & `service-worker.js`**: Essential files for your app to function as a Progressive Web App, providing installability and offline access.
+
+---
+
 
 ## Why this boilerplate?
 
