@@ -4,8 +4,6 @@ This is a super minimal Progressive Web App (PWA) boilerplate, built with **zero
 
 You can format your project architecture in the `README.md` using a tree-like structure, which is common and easy to read on GitHub. You'll want to use Markdown's code blocks for this.
 
-Here's how you can present your project structure:
-
 ---
 
 
@@ -89,39 +87,6 @@ In a world of ever-growing frameworks and build processes, this boilerplate offe
     * `js/service-worker.ts`: Your service worker script, responsible for caching and offline capabilities. This also needs to be transpiled to `js/service-worker.js`.
     * `manifest.json`: Defines your PWA's metadata (name, icons, start URL, display mode).
     * `assets/`: A place for your app icons and other static assets.
-
----
-
-## TypeScript Workflow
-
-Since there are no build tools included in the boilerplate, you have a couple of options for using TypeScript:
-
-### Option 1: Browser-based Transpilation (for development/simple cases)
-
-This boilerplate is set up to transpile TypeScript directly in the browser using a `<script type="module" src="https://unpkg.com/typescript@latest/lib/typescript.min.js"></script>` reference. This is great for quick testing and small experiments, but **not recommended for production** due to potential performance overhead.
-
-### Option 2: Local `tsc` Compilation (Recommended)
-
-For a more robust development workflow and production builds, you'll want to compile your TypeScript files (`.ts`) into JavaScript (`.js`) locally.
-
-1.  **Install TypeScript globally (if you haven't already):**
-
-    ```bash
-    npm install -g typescript
-    ```
-
-    *(Yes, this uses `npm`, but it's only for the TypeScript compiler itself, not for your app's runtime dependencies.)*
-
-2.  **Compile your TypeScript:**
-
-    Navigate to the root of your project in your terminal and run:
-
-    ```bash
-    tsc --init # Only run this once to create tsconfig.json
-    tsc         # Compile all .ts files based on tsconfig.json
-    ```
-
-    Make sure your `tsconfig.json` is configured to output `.js` files to the correct locations (e.g., `outDir: "./js"`).
 
 ---
 
