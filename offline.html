@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Offline - Boiler PWA</title>
+    <link rel="stylesheet" href="/styles/style.css">
+    <style>
+        .offline-container {
+            text-align: center;
+            padding: 2rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .offline-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+    </style>
+</head>
+<body>
+    <main class="offline-container">
+        <div class="offline-icon">📡</div>
+        <h1>You're Offline</h1>
+        <p>Sorry, the page you're looking for isn't available offline. Please check your internet connection and try again.</p>
+        <button onclick="window.location.reload()">Try Again</button>
+    </main>
+</body>
+</html>

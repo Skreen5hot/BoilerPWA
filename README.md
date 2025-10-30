@@ -100,3 +100,52 @@ In a world of ever-growing frameworks and build processes, this boilerplate offe
 ## Contributing
 
 Feel free to fork this repository, add your own minimalist features, or improve upon the existing structure. Pull requests are welcome!
+
+---
+
+## Developer guide & Run locally
+
+Shortcuts and tips for developing and testing this project locally.
+
+Run a simple static server (required for Service Worker scope and some PWA features):
+
+Using Python (built-in):
+
+```powershell
+# from the project root
+python -m http.server 8000
+
+# then open http://localhost:8000 in your browser
+```
+
+Using Node's lightweight serve package (if you have Node):
+
+```powershell
+npx serve -s . -l 8000
+# or install globally: npm i -g serve
+```
+
+Testing PWA features:
+
+- Open Chrome (or Chromium-based browser) -> DevTools -> Application
+- Inspect the Manifest and verify icons, theme_color, and start_url
+- In the Service Workers panel you can register/unregister and inspect caches
+- Use the "Offline" throttling in Network to test offline behavior
+- Run Lighthouse (Audits) to get a PWA/performance/accessibility baseline
+
+Accessibility checklist (quick):
+
+- Ensure the skip link (top of the page) is visible when focused
+- Navigation uses a button for the mobile toggle with proper aria-expanded and aria-controls
+- Sidebars and main content are landmarked with roles: `role="complementary"` and `role="main"`
+- Provide visible focus styles and ensure keyboard navigation works (Tab/Shift+Tab)
+- Use the `a11y-live` region for polite announcements by scripts
+
+Files you may want to update for your app:
+
+- `manifest.json` — update `name`, `short_name`, and icon paths
+- `service-worker.js` — customize caching strategy and offline fallbacks
+- `styles/style.css` — theme tokens and layout styles
+- `core/app.js` — app state and glue code
+
+If you'd like, I can add a minimal GitHub Action that runs basic checks (manifest validation, HTML/CSS lint) or a reproducible Lighthouse run — tell me which, and I'll add it.

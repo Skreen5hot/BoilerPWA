@@ -39,44 +39,97 @@
 
     <a href="#main-content" class="skip-to-content-link">Skip to main content</a>
 
+    <!-- A11y live region for polite announcements -->
+    <div id="a11y-live" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+
     <header class="app-header">
-        <div class="topnav" id="myTopnav">
-            <a href="#home" class="active">Home</a>
-            <a href="#news">News</a>
-            <a href="#contact">Contact</a>
-            <a href="#about">About</a>
-            <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+        <div class="container header-content">
+            <h1>BoilerPWA</h1>
+            <button class="nav-toggle" aria-label="Toggle navigation" id="navToggle" aria-expanded="false" aria-controls="navMenu">
                 <i class="fa fa-bars"></i>
-            </a>
+            </button>
+            <nav class="nav-menu" id="navMenu" role="navigation" aria-label="Main navigation" aria-hidden="true">
+                <a href="#home" class="active">Home</a>
+                <a href="#features">Features</a>
+                <a href="#docs">Docs</a>
+                <a href="#about">About</a>
+                <a href="#contact">Contact</a>
+            </nav>
         </div>
-
-        <div style="padding-left:16px">
-            <h2>Responsive Topnav Example</h2>
-            <p>Resize the browser window to see how it works.</p>
-        </div>
-
     </header>
 
-    <main id="main-content">
-        <section>
-              <img src="assets/icons/favicon-16x16.png" alt="Description of the image">
-            <h2>Hello from the Web!</h2>
-            <p>This is a super basic Progressive Web App built with pure HTML, CSS, JavaScript, and TypeScript.</p>
-            <p>Check your browser's developer tools for the Service Worker and Manifest details.</p>
-            <button id="testButton">Click Me!</button>
-            <p id="outputMessage"></p>
-        </section>
+    <div class="layout-container">
+        <!-- Left Sidebar -->
+        <aside class="sidebar sidebar-left" role="complementary" aria-label="Primary sidebar" tabindex="-1">
+            <div class="sidebar-content">
+                <nav class="sidebar-nav">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#dashboard">Dashboard</a></li>
+                        <li><a href="#profile">Profile</a></li>
+                        <li><a href="#settings">Settings</a></li>
+                        <li><a href="#help">Help Center</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </aside>
 
-        <section>
-            <h2>What's Next?</h2>
-            <ul>
-                <li>Modify `css/style.css` for your app's look and feel.</li>
-                <li>Write your application logic in `js/main.ts`.</li>
-                <li>Customize `manifest.json` with your app's name, icons, and theme.</li>
-                <li>Enhance `js/service-worker.ts` for advanced caching strategies and offline features.</li>
-            </ul>
-        </section>
-    </main>
+        <!-- Main Content -->
+        <main id="main-content" role="main" tabindex="-1">
+            <div class="content-wrapper">
+                <section class="welcome-section">
+                    <h2>Welcome to BoilerPWA</h2>
+                    <p>A modern, responsive Progressive Web App template.</p>
+                    <button id="testButton" class="button primary">Get Started</button>
+                </section>
+
+                <section class="features-section">
+                    <h2>Key Features</h2>
+                    <div class="grid-container">
+                        <div class="card">
+                            <h3>Responsive Design</h3>
+                            <p>Fully responsive layout that works on all devices.</p>
+                        </div>
+                        <div class="card">
+                            <h3>PWA Ready</h3>
+                            <p>Service Worker and manifest for offline capabilities.</p>
+                        </div>
+                        <div class="card">
+                            <h3>No Framework</h3>
+                            <p>Pure HTML, CSS, and JavaScript implementation.</p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+
+        <!-- Right Sidebar -->
+        <aside class="sidebar sidebar-right" role="complementary" aria-label="Secondary sidebar" tabindex="-1">
+            <div class="sidebar-content">
+                <div class="widget">
+                    <h3>Updates</h3>
+                    <ul class="updates-list">
+                        <li>New feature released</li>
+                        <li>Documentation updated</li>
+                        <li>Performance improvements</li>
+                    </ul>
+                </div>
+                <div class="widget">
+                    <h3>Quick Stats</h3>
+                    <div class="stats">
+                        <div class="stat-item">
+                            <span class="stat-value">100+</span>
+                            <span class="stat-label">Downloads</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-value">4.8</span>
+                            <span class="stat-label">Rating</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+    </div>
 
     <footer>
         <p>&copy; 2025 Your Name/Company. All rights reserved.</p>
@@ -85,8 +138,7 @@
     <script>
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
-                // Ensure service-worker.js is transpiled from service-worker.ts
-                navigator.serviceWorker.register('/js/service-worker.js')
+                navigator.serviceWorker.register('/service-worker.js')
                     .then(registration => {
                         console.log('Service Worker registered with scope:', registration.scope);
                     })
@@ -109,6 +161,58 @@
     </script>
 
     <script src="core/app.js" type="module"></script>
+    <script>
+        // Mobile Navigation with ARIA support
+        document.addEventListener('DOMContentLoaded', () => {
+            const navToggle = document.getElementById('navToggle');
+            const navMenu = document.getElementById('navMenu');
+            const a11yLive = document.getElementById('a11y-live');
+
+            function closeNav() {
+                navMenu.classList.remove('active');
+                navMenu.setAttribute('aria-hidden', 'true');
+                navToggle.setAttribute('aria-expanded', 'false');
+            }
+
+            function openNav() {
+                navMenu.classList.add('active');
+                navMenu.setAttribute('aria-hidden', 'false');
+                navToggle.setAttribute('aria-expanded', 'true');
+            }
+
+            navToggle.addEventListener('click', () => {
+                if (navMenu.classList.contains('active')) {
+                    closeNav();
+                    a11yLive.textContent = 'Navigation closed';
+                } else {
+                    openNav();
+                    a11yLive.textContent = 'Navigation opened';
+                }
+            });
+
+            // Allow keyboard activation (Space/Enter) even though button handles this by default; keep for robustness
+            navToggle.addEventListener('keydown', (e) => {
+                if (e.key === ' ' || e.key === 'Enter') {
+                    e.preventDefault();
+                    navToggle.click();
+                }
+            });
+
+            // Close menu when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!navToggle.contains(e.target) && !navMenu.contains(e.target)) {
+                    closeNav();
+                }
+            });
+
+            // Close the nav when resizing above mobile breakpoint
+            window.addEventListener('resize', () => {
+                if (window.innerWidth > 768) {
+                    closeNav();
+                }
+            });
+        });
+    </script>
 
 </body>
 
