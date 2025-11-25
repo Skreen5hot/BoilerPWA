@@ -1,0 +1,11 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "MermaidModel": "https://example.org/ontology/MermaidModel"
+  },
+  "@id": "urn:uuid:3b60daa6-d613-4a1c-8ebe-e6e19cbcfbe3",
+  "@type": "MermaidModel",
+  "name": "help-me",
+  "content": "graph TD;\n  help-->me;",
+  "dateModified": "2025-11-18T11:18:26.714Z"
+}
